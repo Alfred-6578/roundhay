@@ -3,6 +3,7 @@ import { Icon } from "@/components/icons";
 import { ClipCard } from "@/components/clip-card";
 import { MediaSlot } from "@/components/media-slot";
 import { Reveal } from "@/components/reveal";
+import { Today } from "@/components/today";
 import { Portrait, Still } from "@/components/still";
 import { activity, cast, clips, projects, stats, usageByDay } from "@/lib/mock";
 
@@ -21,7 +22,6 @@ function Head({ title, href, link }: { title: string; href?: string; link?: stri
 export default function DashboardPage() {
   const active = clips.filter((c) => c.status === "rendering" || c.status === "queued");
   const done = clips.filter((c) => c.status === "ready" && c.kind === "Video");
-  const today = new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
   const used = stats.creditsTotal - stats.creditsLeft;
   const pct = stats.creditsLeft / stats.creditsTotal;
   const C = 2 * Math.PI * 26;
@@ -36,7 +36,7 @@ export default function DashboardPage() {
         <div className="flex min-h-[27rem] flex-col justify-between gap-10 p-5 sm:min-h-[31rem] sm:p-8 lg:p-10">
           <div className="flex flex-wrap items-center gap-2">
             <span className="chip !bg-black/40 backdrop-blur"><span className="pulse-dot h-1.5 w-1.5 rounded-full bg-warn" />2 rendering</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/60">{today} · Night Feed · Ep. 15</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/60"><Today /> · Night Feed · Ep. 15</span>
           </div>
           <div>
             <h1 className="display text-[clamp(2.6rem,7.4vw,6.6rem)] leading-[0.94] text-white">
